@@ -1,0 +1,452 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aarhasi Sites — Client Design Review Portal</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0C0F14;
+    --surface: #141820;
+    --surface-hover: #1A202C;
+    --border: #242B38;
+    --text: #F1F4F9;
+    --text-muted: #8E99AB;
+    --accent: #3B82F6;
+    --accent-gold: #D4AF37;
+    --accent-emerald: #10B981;
+    --accent-orange: #FF5400;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 1.6;
+    padding: 48px 24px 80px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+  header.portal-head {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 32px;
+    margin-bottom: 44px;
+  }
+  .badge-portal {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #60A5FA;
+    background: rgba(59, 130, 246, 0.12);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    padding: 5px 12px;
+    border-radius: 4px;
+    margin-bottom: 14px;
+  }
+  .badge-portal span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #3B82F6;
+    display: inline-block;
+  }
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    color: #FFF;
+  }
+  p.intro {
+    color: var(--text-muted);
+    font-size: 15.5px;
+    max-width: 820px;
+  }
+  .instructions-box {
+    background: rgba(36, 43, 56, 0.4);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 20px 24px;
+    margin-bottom: 48px;
+    border-radius: 4px;
+  }
+  .instructions-box h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFF;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .instructions-box p {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .entity-section {
+    margin-bottom: 56px;
+  }
+  .entity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .entity-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #FFF;
+  }
+  .entity-meta {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-family: 'Space Mono', monospace;
+  }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  @media (max-width: 980px) {
+    .cards-grid { grid-template-columns: 1fr; }
+  }
+  .version-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .version-card:hover {
+    transform: translateY(-4px);
+    border-color: #3B82F6;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+  }
+  .thumb-wrap {
+    background: #000;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .thumb-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.3s ease;
+  }
+  .version-card:hover .thumb-wrap img {
+    transform: scale(1.02);
+  }
+  .card-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+  }
+  .tag-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .tag-ver {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 3px;
+    background: #1F2937;
+    color: #E5E7EB;
+  }
+  .tag-scope {
+    font-size: 11.5px;
+    color: var(--text-muted);
+  }
+  h2.card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #FFF;
+    margin-bottom: 8px;
+  }
+  p.card-desc {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
+  .btn-open {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 16px;
+    background: #2563EB;
+    color: #FFF;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13.5px;
+    border-radius: 6px;
+    transition: background 0.15s ease;
+  }
+  .btn-open:hover {
+    background: #1D4ED8;
+  }
+  .btn-open svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+  }
+  .feedback-banner {
+    background: #10141D;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 32px;
+    margin-top: 40px;
+  }
+  .feedback-banner h3 {
+    font-size: 17px;
+    color: #FFF;
+    margin-bottom: 10px;
+  }
+  .feedback-banner ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 24px;
+    margin-top: 14px;
+  }
+  @media (max-width: 768px) {
+    .feedback-banner ul { grid-template-columns: 1fr; }
+  }
+  .feedback-banner li {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .feedback-banner li strong {
+    color: #FFF;
+  }
+  footer.portal-foot {
+    margin-top: 48px;
+    text-align: center;
+    font-size: 12.5px;
+    color: #556070;
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header class="portal-head">
+    <div class="badge-portal"><span></span> Internal Client Review Environment</div>
+    <h1>Aarhasi Group — Multi-Version Design Portal</h1>
+    <p class="intro">Compare six distinct design directions for Aarhasi Global (India) and Aarhasi World Trading FZCO (Dubai). All content, figures, and verified business facts remain identical across versions. Only typography, color palettes, hero composition, and component styling vary.</p>
+  </header>
+
+  <div class="instructions-box">
+    <h3>💡 How to Review &amp; Give Feedback</h3>
+    <p>Click <strong>"Open Version"</strong> on any card to open that site in a new browser tab. Compare how each visual language communicates trust, scale, and professionalism. When sharing feedback, cite the entity name and version number (e.g. <em>"Aarhasi Global — Version 2"</em>) along with any preferred sections or typography.</p>
+  </div>
+
+  <!-- ENTITY 1: AARHASI GLOBAL -->
+  <section class="entity-section">
+    <div class="entity-header">
+      <div>
+        <div class="entity-title">1. Aarhasi Global (India Entity)</div>
+        <div style="font-size:13.5px;color:var(--text-muted);margin-top:2px;">Apple Authorized DPP Partner &middot; Multi-Page Architecture (Home, About, Solutions, Leadership, Contact, 404)</div>
+      </div>
+      <div class="entity-meta">GUJARAT, INDIA &middot; 6 PAGES</div>
+    </div>
+
+    <div class="cards-grid">
+      <!-- V1 GLOBAL -->
+      <div class="version-card">
+        <div class="thumb-wrap">
+          <img src="thumbnails/v1-aarhasi-global.png" alt="Aarhasi Global Version 1 Desktop Thumbnail" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'250\' fill=\'%23141820\'><rect width=\'100%\' height=\'100%'/><text x=\'50%\' y=\'50%\' fill=\'%238E99AB\' font-family=\'sans-serif\' font-size=\'14\' text-anchor=\'middle\'>Version 1: Modern Tech Enterprise</text></svg>'">
+        </div>
+        <div class="card-body">
+          <div>
+            <div class="tag-row">
+              <span class="tag-ver">V1</span>
+              <span class="tag-scope">Preserved Design</span>
+            </div>
+            <h2 class="card-title">Modern Tech Enterprise</h2>
+            <p class="card-desc">Authoritative corporate technology aesthetic featuring Space Grotesk display headings, crisp Inter body type, deep indigo accents, and clean structured cards.</p>
+          </div>
+          <a href="v1-aarhasi-global/index.html" target="_blank" rel="noopener" class="btn-open">
+            Open Version 1
+            <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- V2 GLOBAL -->
+      <div class="version-card">
+        <div class="thumb-wrap">
+          <img src="thumbnails/v2-aarhasi-global.png" alt="Aarhasi Global Version 2 Desktop Thumbnail" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'250\' fill=\'%23141820\'><rect width=\'100%\' height=\'100%'/><text x=\'50%\' y=\'50%\' fill=\'%238E99AB\' font-family=\'sans-serif\' font-size=\'14\' text-anchor=\'middle\'>Version 2: Executive Editorial</text></svg>'">
+        </div>
+        <div class="card-body">
+          <div>
+            <div class="tag-row">
+              <span class="tag-ver" style="background:#3C2E12;color:#E5C158;">V2</span>
+              <span class="tag-scope">Editorial Heritage</span>
+            </div>
+            <h2 class="card-title">Executive Editorial &amp; Heritage</h2>
+            <p class="card-desc">Sovereign institutional prestige featuring Fraunces display serif, Plus Jakarta Sans, midnight navy, warm alabaster cream, and polished brass hairline accents.</p>
+          </div>
+          <a href="v2-aarhasi-global/index.html" target="_blank" rel="noopener" class="btn-open" style="background:#B8862E;color:#0A1220;">
+            Open Version 2
+            <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- V3 GLOBAL -->
+      <div class="version-card">
+        <div class="thumb-wrap">
+          <img src="thumbnails/v3-aarhasi-global.png" alt="Aarhasi Global Version 3 Desktop Thumbnail" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'250\' fill=\'%23141820\'><rect width=\'100%\' height=\'100%'/><text x=\'50%\' y=\'50%\' fill=\'%238E99AB\' font-family=\'sans-serif\' font-size=\'14\' text-anchor=\'middle\'>Version 3: Nordic Industrial</text></svg>'">
+        </div>
+        <div class="card-body">
+          <div>
+            <div class="tag-row">
+              <span class="tag-ver" style="background:#401705;color:#FF8547;">V3</span>
+              <span class="tag-scope">Precision Distribution</span>
+            </div>
+            <h2 class="card-title">Nordic Industrial Precision</h2>
+            <p class="card-desc">High-density supply chain command aesthetic with bold Syne display type, DM Sans, cadmium electric orange highlights, and modular bento telemetry cards.</p>
+          </div>
+          <a href="v3-aarhasi-global/index.html" target="_blank" rel="noopener" class="btn-open" style="background:#FF5400;color:#FFF;">
+            Open Version 3
+            <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTITY 2: AARHASI WORLD TRADING -->
+  <section class="entity-section">
+    <div class="entity-header">
+      <div>
+        <div class="entity-title">2. Aarhasi World Trading FZCO (Dubai Entity)</div>
+        <div style="font-size:13.5px;color:var(--text-muted);margin-top:2px;">International Trade &amp; Re-Export Engine &middot; Single-Page Architecture</div>
+      </div>
+      <div class="entity-meta">DUBAI, UAE &middot; SINGLE PAGE</div>
+    </div>
+
+    <div class="cards-grid">
+      <!-- V1 DUBAI -->
+      <div class="version-card">
+        <div class="thumb-wrap">
+          <img src="thumbnails/v1-aarhasi-world.png" alt="Aarhasi World Version 1 Desktop Thumbnail" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'250\' fill=\'%23141820\'><rect width=\'100%\' height=\'100%'/><text x=\'50%\' y=\'50%\' fill=\'%238E99AB\' font-family=\'sans-serif\' font-size=\'14\' text-anchor=\'middle\'>Version 1: Dubai Trade Engine</text></svg>'">
+        </div>
+        <div class="card-body">
+          <div>
+            <div class="tag-row">
+              <span class="tag-ver" style="background:#092F23;color:#34D399;">V1</span>
+              <span class="tag-scope">Preserved Design</span>
+            </div>
+            <h2 class="card-title">Dubai Trade Engine</h2>
+            <p class="card-desc">High-velocity Gulf trade hub aesthetic in emerald green and charcoal with SVG trade corridors, multi-currency finance credentials, and split-hero value metrics.</p>
+          </div>
+          <a href="v1-aarhasi-world/index.html" target="_blank" rel="noopener" class="btn-open" style="background:#16A87C;color:#06231A;">
+            Open Version 1
+            <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- V2 DUBAI -->
+      <div class="version-card">
+        <div class="thumb-wrap">
+          <img src="thumbnails/v2-aarhasi-world.png" alt="Aarhasi World Version 2 Desktop Thumbnail" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'250\' fill=\'%23141820\'><rect width=\'100%\' height=\'100%'/><text x=\'50%\' y=\'50%\' fill=\'%238E99AB\' font-family=\'sans-serif\' font-size=\'14\' text-anchor=\'middle\'>Version 2: Gulf Sovereign</text></svg>'">
+        </div>
+        <div class="card-body">
+          <div>
+            <div class="tag-row">
+              <span class="tag-ver" style="background:#382B0D;color:#EAB308;">V2</span>
+              <span class="tag-scope">High-Finance Sovereign</span>
+            </div>
+            <h2 class="card-title">Gulf Sovereign High-Finance</h2>
+            <p class="card-desc">DIFC-grade sovereign trade matrix featuring Cinzel Roman serif headlines, champagne sand paper, imperial burnished gold accents, and currency trade tickers.</p>
+          </div>
+          <a href="v2-aarhasi-world/index.html" target="_blank" rel="noopener" class="btn-open" style="background:#D4AF37;color:#080A0E;">
+            Open Version 2
+            <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- V3 DUBAI -->
+      <div class="version-card">
+        <div class="thumb-wrap">
+          <img src="thumbnails/v3-aarhasi-world.png" alt="Aarhasi World Version 3 Desktop Thumbnail" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'250\' fill=\'%23141820\'><rect width=\'100%\' height=\'100%'/><text x=\'50%\' y=\'50%\' fill=\'%238E99AB\' font-family=\'sans-serif\' font-size=\'14\' text-anchor=\'middle\'>Version 3: Hyper-Logistics</text></svg>'">
+        </div>
+        <div class="card-body">
+          <div>
+            <div class="tag-row">
+              <span class="tag-ver" style="background:#082A3A;color:#38BDF8;">V3</span>
+              <span class="tag-scope">Air-Sea Velocity</span>
+            </div>
+            <h2 class="card-title">Hyper-Logistics &amp; Velocity</h2>
+            <p class="card-desc">Aerospace &amp; maritime logistics telemetry aesthetic utilizing Sora display type, abyssal blue, electric cyan glow highlights, and rapid re-export transit chips.</p>
+          </div>
+          <a href="v3-aarhasi-world/index.html" target="_blank" rel="noopener" class="btn-open" style="background:#00E5FF;color:#040914;">
+            Open Version 3
+            <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUIDANCE FOOTER -->
+  <div class="feedback-banner">
+    <h3>📋 Client Review &amp; Quality Checklist</h3>
+    <p style="font-size:13.5px;color:var(--text-muted);">Please note the following technical and governance standards applied to all preview versions:</p>
+    <ul>
+      <li><span>🔒 <strong>Search Engine Block:</strong> All pages include <code>noindex, nofollow</code> and <code>Disallow: /</code> robots.txt so drafts cannot be indexed.</span></li>
+      <li><span>📝 <strong>Content Preservation:</strong> All copy, facts, and "pending confirmation" notices are kept 100% identical.</span></li>
+      <li><span>📱 <strong>Responsiveness:</strong> Tested across desktop (1440px), tablet (1024px/768px), and mobile (390px/360px).</span></li>
+      <li><span>⚡ <strong>Interactive Forms:</strong> The contact form <code>submitLead()</code> abstraction captures submissions with full validation.</span></li>
+    </ul>
+  </div>
+
+  <footer class="portal-foot">
+    Internal Review Portal &middot; Aarhasi Global &amp; Aarhasi World Trading FZCO &middot; Client Review Only
+  </footer>
+</div>
+
+</body>
+</html>
