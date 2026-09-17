@@ -264,6 +264,64 @@
     .notice-strip, .notice { font-size: 11px !important; padding: 6px 12px !important; }
   }
 
+
+    .hero {
+      position: relative;
+      background: #0A111F !important;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url('../assets/images/hero-tech-showroom.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      opacity: 0.28;
+      z-index: 1;
+      transform: scale(1.02);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(8,13,24,0.75) 0%, rgba(8,13,24,0.6) 40%, rgba(8,13,24,0.98) 100%);
+      z-index: 1;
+    }
+    .hero > * { position: relative; z-index: 2; }
+    
+    /* Photo capability cards */
+    .cap-thumb {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: var(--radius, 4px);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .photo-banner {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 40px 0;
+      height: 280px;
+    }
+    .photo-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .photo-banner-content {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(8,13,24,0.9) 0%, rgba(8,13,24,0.4) 60%, transparent 100%);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #fff;
+    }
+  
 </style>
 </head>
 <body>
@@ -369,7 +427,7 @@
       <div class="cap-card">
         <svg class="icon"><use href="#i-bank"/></svg>
         <span class="cap-status live">Live capability</span>
-        <h3>Institutional Procurement</h3>
+        <img src="../assets/images/institutional-supply.jpg" class="cap-thumb" alt="Institutional Procurement" loading="lazy"><h3>Institutional Procurement</h3>
         <p>Bulk pricing, allocation and account management structured for corporate, education and government buyers.</p>
         <div class="cap-cta"><a href="contact.html">Request Quote →</a></div>
       </div>

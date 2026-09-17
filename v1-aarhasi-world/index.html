@@ -272,6 +272,67 @@
     .notice-strip, .notice { font-size: 11px !important; padding: 6px 12px !important; }
   }
 
+
+    .hero {
+      position: relative;
+      background: #050912 !important;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url('../assets/images/dubai-skyline-dusk.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.32;
+      z-index: 1;
+      transform: scale(1.02);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(5,9,18,0.7) 0%, rgba(5,9,18,0.5) 45%, rgba(5,9,18,0.98) 100%);
+      z-index: 1;
+    }
+    .hero > * { position: relative; z-index: 2; }
+
+    /* Portfolio rich cards */
+    .pf-img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: var(--radius, 4px);
+      margin-bottom: 14px;
+      display: block;
+    }
+    .logistics-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin: 40px 0;
+    }
+    @media (max-width: 768px) { .logistics-strip { grid-template-columns: 1fr; } }
+    .logistics-card {
+      position: relative;
+      height: 200px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .logistics-card img { width: 100%; height: 100%; object-fit: cover; }
+    .logistics-card-cap {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.85) 100%);
+      padding: 16px;
+      display: flex;
+      align-items: flex-end;
+      color: #fff;
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+  
 </style>
 </head>
 <body>
@@ -399,10 +460,10 @@
       <p>Wholesale supply across four core technology verticals.</p>
     </div>
     <div class="portfolio-grid">
-      <div class="pf-card"><svg class="icon"><use href="#i-phone"/></svg><h3>Mobiles &amp; Smartwatches</h3><p>Original smartphones and wearables.</p></div>
-      <div class="pf-card"><svg class="icon"><use href="#i-laptop"/></svg><h3>Computing</h3><p>MacBooks, enterprise laptops &amp; PCs.</p></div>
-      <div class="pf-card"><svg class="icon"><use href="#i-camera"/></svg><h3>Digital Imaging</h3><p>Cameras, optics &amp; media gear.</p></div>
-      <div class="pf-card"><svg class="icon"><use href="#i-headphones"/></svg><h3>Accessories</h3><p>Power systems, audio &amp; protective gear.</p></div>
+      <div class="pf-card"><svg class="icon"><use href="#i-phone"/></svg><img src="../assets/images/apple-devices-desk.jpg" class="pf-img" alt="Mobiles &amp; Smartwatches" loading="lazy"><h3>Mobiles &amp; Smartwatches</h3><p>Original smartphones and wearables.</p></div>
+      <div class="pf-card"><svg class="icon"><use href="#i-laptop"/></svg><img src="../assets/images/hero-tech-showroom.jpg" class="pf-img" alt="Computing" loading="lazy"><h3>Computing</h3><p>MacBooks, enterprise laptops &amp; PCs.</p></div>
+      <div class="pf-card"><svg class="icon"><use href="#i-camera"/></svg><img src="../assets/images/retail-store.jpg" class="pf-img" alt="Digital Imaging" loading="lazy"><h3>Digital Imaging</h3><p>Cameras, optics &amp; media gear.</p></div>
+      <div class="pf-card"><svg class="icon"><use href="#i-headphones"/></svg><img src="../assets/images/order-fulfillment.jpg" class="pf-img" alt="Accessories" loading="lazy"><h3>Accessories</h3><p>Power systems, audio &amp; protective gear.</p></div>
     </div>
   </div>
 </section>

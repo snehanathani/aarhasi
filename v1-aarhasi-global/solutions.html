@@ -110,6 +110,32 @@
     .notice-strip, .notice { font-size: 11px !important; padding: 6px 12px !important; }
   }
 
+
+    .hero {
+      position: relative;
+      background: #0A111F !important;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url('../assets/images/warehouse-logistics.jpg');
+      background-size: cover;
+      background-position: center 35%;
+      opacity: 0.28;
+      z-index: 1;
+      transform: scale(1.02);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(8,13,24,0.75) 0%, rgba(8,13,24,0.6) 40%, rgba(8,13,24,0.98) 100%);
+      z-index: 1;
+    }
+    .hero > * { position: relative; z-index: 2; }
+
 </style>
 </head>
 <body>
