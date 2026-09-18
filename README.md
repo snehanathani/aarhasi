@@ -16,7 +16,7 @@ When published to GitHub Pages at `https://snehanathani.github.io/aarhasi/`, eac
 |---|---|---|---|
 | **Review Hub** | — | **Version Picker Landing Page** | `/index.html` |
 | **Aarhasi Global (India)** | **Version 4** | **Apple Authorized Enterprise Partner** (AP Vision Style - Premier) | `/v4-aarhasi-global/` |
-| **Aarhasi Global (India)** | **Version 1** | **Modern Tech Enterprise** (Original Preserved) | `/v1-aarhasi-global/` |
+| **Aarhasi Global (India)** | **Version 1** | **Modern Tech Enterprise** (Claude B2B Catalog Redesign) | `/v1-aarhasi-global/` |
 | **Aarhasi Global (India)** | **Version 2** | **Executive Editorial & Institutional Heritage** | `/v2-aarhasi-global/` |
 | **Aarhasi Global (India)** | **Version 3** | **Nordic Industrial & High-Precision Distribution** | `/v3-aarhasi-global/` |
 | **Aarhasi World (Dubai)** | **Version 4** | **Modern Global Trade Hub** (AP Vision Light Style - Premier) | `/v4-aarhasi-world/` |
