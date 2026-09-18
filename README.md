@@ -1,4 +1,4 @@
-﻿# Aarhasi Group — Multi-Version Client Review Portal
+# Aarhasi Group — Multi-Version Client Review Portal
 
 This repository contains the multi-version review build for two related corporate entities:
 1. **Aarhasi Global** (India entity) — B2B Technology Distribution & Apple Authorized DPP Partner (Multi-page: Home, About, Solutions, Leadership, Contact, 404).
@@ -15,9 +15,11 @@ When published to GitHub Pages at `https://snehanathani.github.io/aarhasi/`, eac
 | Entity | Version | Design System / Direction | URL Path |
 |---|---|---|---|
 | **Review Hub** | — | **Version Picker Landing Page** | `/index.html` |
+| **Aarhasi Global (India)** | **Version 4** | **Apple Authorized Enterprise Partner** (AP Vision Style - Premier) | `/v4-aarhasi-global/` |
 | **Aarhasi Global (India)** | **Version 1** | **Modern Tech Enterprise** (Original Preserved) | `/v1-aarhasi-global/` |
 | **Aarhasi Global (India)** | **Version 2** | **Executive Editorial & Institutional Heritage** | `/v2-aarhasi-global/` |
 | **Aarhasi Global (India)** | **Version 3** | **Nordic Industrial & High-Precision Distribution** | `/v3-aarhasi-global/` |
+| **Aarhasi World (Dubai)** | **Version 4** | **Modern Global Trade Hub** (AP Vision Light Style - Premier) | `/v4-aarhasi-world/` |
 | **Aarhasi World (Dubai)** | **Version 1** | **Dubai Trade Engine** (Original Preserved) | `/v1-aarhasi-world/` |
 | **Aarhasi World (Dubai)** | **Version 2** | **Gulf Sovereign & High-Finance Trade** | `/v2-aarhasi-world/` |
 | **Aarhasi World (Dubai)** | **Version 3** | **Hyper-Logistics & Cross-Border Velocity** | `/v3-aarhasi-world/` |
